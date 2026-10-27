@@ -7,7 +7,7 @@ sidebar:
 
 En este tutorial crearás un sitio de documentación con una portada y un primer artículo. Instalarás las herramientas, crearás el proyecto, escribirás las páginas en Markdown, guardarás el código en GitHub y conectarás Cloudflare Pages para publicar cada actualización.
 
-Los ejemplos usan **Zero Volts** como nombre; puedes sustituirlo por el tuyo. Primero publicarás con una dirección gratuita `pages.dev`. El dominio personalizado es un paso opcional al final.
+Los ejemplos usan **mi_sitio** como nombre; puedes cambiarlo  por el tuyo(en mi caso sera zerovolts-site). Primero se publicara con una dirección gratuita `pages.dev`. El dominio personalizado es un paso opcional al final.
 
 ## 1. Qué vas a utilizar
 
@@ -45,7 +45,7 @@ Necesitas una terminal, un editor de texto —por ejemplo Visual Studio Code— 
 
 ### Instalar Node.js y npm
 
-La configuración de ejemplo se ha comprobado con Astro 7.0.9, Starlight 0.41.3 y Node 22.18.0. Esa versión de Astro requiere Node 22.12.0 o superior. Usaremos la rama 22; si el generador instala una versión de Astro con otros requisitos, sigue los requisitos que indique.
+La configuración de ejemplo se ha comprobado con Astro 7.0.9, Starlight 0.41.3 y Node 22.18.0. Esa versión de Astro requiere Node 22.12.0 o superior
 
 Una forma de administrar Node es **nvm**, que permite instalar y seleccionar distintas versiones:
 
@@ -98,9 +98,10 @@ npm create astro@latest mi_sitio -- --template starlight
 cd mi_sitio
 ```
 
-El generador descarga la plantilla y crea los archivos iniciales. Acepta instalar las dependencias. Puedes responder que no a inicializar Git: lo haremos en el paso 10. Si ya lo inicializó, no hay problema.
+![eg](../../../assets/images/01/install1.png)
 
-Escribe **`starlight`**, no `startlight`. Si la carpeta `mi_sitio` ya contiene otro proyecto, elige un nombre nuevo; no ejecutes el generador sobre archivos que quieras conservar.
+El generador descarga la plantilla y crea los archivos iniciales. Acepta instalar las dependencias. Puedes responder que no a inicializar Git: lo haremos mas adelante. Si ya lo inicializó, no hay problema.
+
 
 Si omitiste la instalación de dependencias, ejecútala ahora, desde `mi_sitio/`:
 
@@ -120,7 +121,7 @@ En futuras terminales podrás seleccionar la versión del proyecto con `nvm use`
 
 **Resultado esperado:** dentro de `mi_sitio/` debes ver `package.json`, `astro.config.mjs` y la carpeta `src/`. La creación del starter se explica también en la [guía de Starlight](https://starlight.astro.build/getting-started/).
 
-## 4. Entender las carpetas antes de modificarlas
+## 4. Entender los directorios antes de modificarlos
 
 Llamaremos **raíz del proyecto** a `mi_sitio/`, la carpeta que contiene `package.json`. A partir de ahora ejecuta los comandos desde esa raíz. Puedes comprobar dónde estás con `pwd` y qué contiene la carpeta con `ls`.
 
@@ -140,22 +141,22 @@ Llamaremos **raíz del proyecto** a `mi_sitio/`, la carpeta que contiene `packag
 
 Conserva `src/content.config.ts` tal como lo genera el starter. No necesitas modificarlo para escribir artículos.
 
-### Qué significa la carpeta `meta`
+### Directorio del contenido
 
 Vamos a crear una carpeta `meta/` dentro de `src/content/docs/`. Elegimos ese nombre para agrupar documentación sobre el propio sitio. **Es una decisión de organización, no un nombre obligatorio de Astro.**
 
-Podrías usar `tutoriales/`, `guias/` o guardar tus artículos directamente en `docs/`. Elegir una subcarpeta afecta a dos cosas:
+Podrías usar `tutoriales/`, `guias/` o guardar tus artículos directamente en `docs/`. Elegir un subdirectorio afecta a dos cosas:
 
 1. Forma parte de la dirección de sus artículos: `meta/archivo.md` se publicará por defecto en `/meta/archivo/`.
 2. Puedes indicarle al menú que muestre los artículos de esa carpeta.
 
-La carpeta se crea con `mkdir` en el siguiente paso. La propiedad `sidebar` de `astro.config.mjs` decidirá cómo aparece en el menú. La configuración del menú no crea la carpeta ni escribe las páginas. [Páginas de Starlight](https://starlight.astro.build/guides/pages/).
+El directorio se crea con `mkdir` en el siguiente paso. La propiedad `sidebar` de `astro.config.mjs` decidirá cómo aparece en el menú. La configuración del menú no crea el directorio ni escribe las páginas. [Páginas de Starlight](https://starlight.astro.build/guides/pages/).
 
 ## 5. Limpiar los ejemplos y configurar el sitio
 
 El starter trae páginas de demostración. En el editor, abre `src/content/docs/`, elimina las carpetas `guides/` y `reference/` si están presentes y los demás artículos de ejemplo. Conserva `index.mdx`, que reemplazaremos en el paso 7.
 
-Ahora crea la carpeta para el primer tutorial:
+Ahora crea el directorio para el primer documento/articulo o tutorial:
 
 ```bash
 mkdir -p src/content/docs/meta
@@ -205,7 +206,7 @@ En este punto no definimos una dirección `site`, porque todavía no sabemos cu�
 
 La configuración anterior ya funciona con el diseño predeterminado de Starlight. No necesitas crear CSS para tener menú, modo claro y oscuro o diseño adaptable.
 
-Si después quieres cambiar los colores, podrás crear `src/styles/custom.css` y agregar `customCss: ['./src/styles/custom.css']` dentro de `starlight({ ... })`. Solo mantén esa propiedad si el archivo existe. Los estilos globales se configuran una vez para el sitio, no por cada artículo. [Personalización de estilos](https://starlight.astro.build/guides/css-and-tailwind/).
+Si después quieres cambiar los colores, podrás crear `src/styles/custom.css` y agregar `customCss: ['./src/styles/custom.css']` dentro de `starlight({ ... })`. Los estilos globales se configuran una vez para el sitio, no por cada artículo. [Personalización de estilos](https://starlight.astro.build/guides/css-and-tailwind/).
 
 ## 6. Escribir el primer artículo directamente
 
@@ -242,7 +243,7 @@ npm create astro@latest mi_sitio -- --template starlight
 El sitio tendrá una portada y este primer artículo.
 ````
 
-Este archivo es el artículo que Astro publicará. **Escribe y actualiza aquí su contenido.** Puedes ampliarlo con el recorrido completo, capturas, comandos y explicaciones. No necesitas otro archivo fuente, una carpeta `scripts/` ni un comando que copie el texto.
+Este archivo es el artículo que Astro publicará. **Escribe y actualiza aquí su contenido.** Puedes ampliarlo con el recorrido completo, capturas, comandos y explicaciones. 
 
 El bloque inicial entre `---` se llama **frontmatter**:
 
@@ -254,9 +255,10 @@ El bloque inicial entre `---` se llama **frontmatter**:
 
 Después del frontmatter comienza el contenido. Usa encabezados `##` para sus secciones: Starlight ya muestra `title` como encabezado principal. La tabla de contenidos del artículo se genera con esos encabezados, mientras que el menú lateral se define en la configuración del sitio.
 
-### ¿El archivo debe llevar un número?
+### Nombre de documentos/articulos etc
 
-No. `01-` es solo una convención. Puedes nombrar el archivo `making-site.md`, `crear-sitio.md` o cualquier otro nombre descriptivo. Es preferible usar minúsculas y guiones, sin espacios.
+En este ejemplo se uso como nombre del articulo **01-construyendo-el-sitio.md**, 
+Puedes nombrar el archivo `making-site.md`, `crear-sitio.md` o cualquier otro nombre descriptivo. Es preferible usar minúsculas y guiones, sin espacios. En mi caso use un numero para poder identificar  y llevar un orden interno, No es necesario y tampoco es una convención.
 
 | Archivo dentro de `src/content/docs/` | Dirección por defecto |
 | --- | --- |
@@ -267,11 +269,11 @@ No. `01-` es solo una convención. Puedes nombrar el archivo `making-site.md`, `
 
 El título visible viene de `title`, no del nombre del archivo. `sidebar.order: 1` permite controlar el orden sin numerar los nombres; sin un orden explícito, el menú autogenerado ordena alfabéticamente por el identificador de archivo. [Navegación de Starlight](https://starlight.astro.build/guides/sidebar/).
 
-Si cambias el nombre a `making-site.md`, actualiza los enlaces escritos a mano para usar `/meta/making-site/`. El menú autogenerado detecta el nuevo archivo, pero los botones de la portada no cambian solos. También existe un campo `slug` para personalizar la dirección independientemente del archivo; no hace falta para seguir este ejemplo.
+Si cambias el nombre a `making-site.md`, actualiza los enlaces escritos a mano para usar `/meta/making-site/`. El menú autogenerado detecta el nuevo archivo, pero los botones de la portada no cambian solos. También existe un campo `slug` para personalizar la dirección independientemente del archivo.
 
 ## 7. Crear la página principal
 
-`src/content/docs/index.mdx` es la **portada**: la página que se abre al visitar la raíz del sitio, por ejemplo `http://localhost:4321/`. No es un índice automático de artículos ni configura el menú lateral.
+`src/content/docs/index.mdx` es la pagina principal o "dashboard": la página que se abre al visitar la raíz del sitio, por ejemplo `http://localhost:4321/`. No es un índice automático de artículos ni configura el menú lateral.
 
 La extensión `.mdx` permite usar Markdown y componentes. El siguiente ejemplo solo necesita Markdown y frontmatter. Reemplaza el contenido de `index.mdx` por:
 
@@ -422,7 +424,7 @@ Un commit guarda una versión local. Aún falta enviarla a GitHub.
 
 ### Crear y conectar el repositorio remoto
 
-En [github.com/new](https://github.com/new), crea un repositorio llamado `mi-sitio`. Puede ser público si quieres que los lectores consulten el código. Déjalo vacío: no agregues README, licencia ni `.gitignore` desde GitHub porque ya tienes un proyecto local.
+En [github.com/new](https://github.com/new), crea un repositorio llamado `mi-sitio`(o el nombre de tu sitio). Puede ser público si quieres que los lectores consulten el código. Déjalo vacío: no agregues README, licencia ni `.gitignore` desde GitHub porque ya tienes un proyecto local.
 
 Copia su URL y sustituye `TU_USUARIO` en estos comandos por tu usuario u organización real:
 
@@ -442,10 +444,14 @@ Usaremos **Pages con integración Git** para que Cloudflare compile el código d
 
 En [Cloudflare Dashboard](https://dash.cloudflare.com/):
 
-1. Entra en **Workers & Pages → Create application**.
+1. Entra en **Workers & Pages → Create application**. 
+![eg](../../../assets/images/01/claudefare1.png)
+![eg](../../../assets/images/01/claudefare2.png)
 2. Selecciona **Pages** y después **Connect to Git** o **Import an existing Git repository**; el texto puede variar entre pantallas.
+![eg](../../../assets/images/01/claudefare3.png)
 3. Conecta GitHub y autoriza el acceso al repositorio `mi-sitio`.
 4. Selecciona el repositorio y comienza la configuración.
+![eg](../../../assets/images/01/claudefare4.png)
 5. Completa los valores siguientes:
 
 | Campo | Valor |
@@ -456,6 +462,8 @@ En [Cloudflare Dashboard](https://dash.cloudflare.com/):
 | Build command | `npm run build` |
 | Build output directory | `dist` |
 | Root directory | Vacío si `package.json` está en la raíz del repositorio |
+
+![eg](../../../assets/images/01/claudefare5.png)
 
 La carpeta local puede llamarse `mi_sitio` y el repositorio `mi-sitio`; eso no cambia la raíz del repositorio. No escribas el nombre de la carpeta local en Root directory si `package.json` ya aparece en la raíz de GitHub.
 
@@ -564,22 +572,6 @@ git push
 
 Si cambias además la configuración o agregas imágenes, incluye también esos archivos en el commit. Para archivos de `public/imagenes/`, usa enlaces como `/imagenes/diagrama.svg`; no incluyas `public` en la URL. Para imágenes procesadas en `src/assets/`, usa rutas relativas desde el artículo. [Contenido e imágenes en Starlight](https://starlight.astro.build/guides/authoring-content/).
 
-### Revisar cambios antes de actualizar producción
-
-Para una revisión mediante Pull Request, crea una rama **antes de editar**:
-
-```bash
-git switch -c tutorial/nuevo-articulo
-```
-
-Después de escribir y compilar, prepara los archivos y crea el commit. Envía la rama con:
-
-```bash
-git push -u origin tutorial/nuevo-articulo
-```
-
-Abre un Pull Request hacia `main`. Si los despliegues Preview están habilitados para esa rama, Pages generará una URL de revisión. Comprueba el contenido y fusiona el PR cuando esté listo: actualizar `main` publicará producción. La URL temporal del preview no es la dirección permanente del artículo.
-
 ## 15. Conectar un dominio propio (opcional)
 
 Primero deja funcionando la dirección `pages.dev`. Puedes seguir utilizándola sin comprar un dominio.
@@ -633,3 +625,6 @@ Cuando funcione el dominio, cambia `site` a su dirección HTTPS, ejecuta el buil
 - Un flujo repetible para actualizar el artículo y agregar los siguientes.
 
 La configuración inicial se hace una vez. En el trabajo habitual escribirás Markdown, comprobarás el build y enviarás los cambios. Conserva `package-lock.json`, revisa las actualizaciones de dependencias y consulta los [límites vigentes de Pages](https://developers.cloudflare.com/pages/platform/limits/) si el proyecto crece.
+
+
+Y con esto ya habras montado un sitio basico estatico para mostrar articulos, documentos, tutoriales o un blog si asi lo quieres, como por ejemplo este que acabas de leer.

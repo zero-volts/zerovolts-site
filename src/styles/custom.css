@@ -1,0 +1,86 @@
+
+/* Zero-Volts theme */
+
+:root {
+  --sl-color-accent-low: #103d28;
+  --sl-color-accent: #00e889;
+  --sl-color-accent-high: #b6ffe0;
+}
+
+:root[data-theme='dark'] {
+  --sl-color-bg: #0b0f10;
+  --sl-color-bg-nav: #101714;
+  --sl-color-bg-sidebar: #0b0f10;
+  --sl-color-hairline: #244334;
+}
+
+/* Hero */
+
+.hero {
+  padding-block: 3rem;
+  gap: 2rem;
+}
+
+.hero h1 {
+  color: #f2fff7;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.hero .tagline {
+  color: #aec3b6;
+  line-height: 1.7;
+}
+
+.hero img {
+  max-width: 380px;
+  border-radius: 16px;
+  filter: drop-shadow(0 0 28px rgba(0, 232, 137, 0.18));
+}
+
+/* Main action */
+
+.hero .primary {
+  background: #00e889;
+  color: #06120c;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.hero .primary:hover {
+  background: #43ffab;
+}
+
+/* Documentation cards */
+
+.sl-card {
+  background: #121c18;
+  border: 1px solid #244936;
+  border-radius: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.sl-card:hover {
+  border-color: #00e889;
+  transform: translateY(-3px);
+}
+
+.sl-card .icon {
+  color: #00e889;
+}
+
+/* Links */
+
+.sl-markdown-content a:not(.sl-link-card) {
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 50rem) {
+  .hero {
+    padding-block: 2rem;
+  }
+
+  .hero img {
+    max-width: 260px;
+  }
+}
