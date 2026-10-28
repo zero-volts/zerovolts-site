@@ -12,7 +12,7 @@ hero:
     file: ../../assets/images/icon_zerovolts.png
   actions:
     - text: Explorar tutoriales
-      link: /meta/01-making-astro-site/
+      link: /#tutoriales
       icon: right-arrow
     - text: GitHub
       link: https://github.com/zero-volts
@@ -20,7 +20,7 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ## Explora Zero-Volts
 
@@ -30,11 +30,19 @@ Un espacio para experimentar, construir dispositivos y compartir conocimientos s
 
 Documentación paso a paso basada en proyectos reales.
 
-<LinkCard
-  title="01 — Crear un sitio web con Astro"
-  description="Instala Astro y Starlight, configura GitHub y publica tu proyecto en Cloudflare Pages."
-  href="/meta/01-making-astro-site/"
-/>
+<CardGrid>
+  <LinkCard
+    title="01 — Crear un sitio web con Astro"
+    description="Instala Astro y Starlight, configura GitHub y publica tu proyecto en Cloudflare Pages."
+    href="/meta/01-making-astro-site/"
+  />
+  <LinkCard
+    title="02 — Pantalla SPI XPT2046 en Raspberry Pi"
+    description="Guía para conectar una pantalla de 3.5&quot; a tu Raspberry Pi, configurar el driver y calibrar la pantalla táctil en Linux."
+    href="/meta/02-rpi-xpt2046/"
+  />
+
+</CardGrid>
 
 ---
 
@@ -42,11 +50,5 @@ Documentación paso a paso basada en proyectos reales.
 
 Encuentra avances, experimentos y código fuente en:
 
-<a href="https://github.com/zero-volts" target="_blank" rel="noopener noreferrer">
-  GitHub
-</a>
-
-<a href="https://www.youtube.com/@zero-volts" target="_blank" rel="noopener noreferrer">
-  YouTube
-</a>
-
+- [GitHub](https://github.com/zero-volts)
+- [YouTube](https://www.youtube.com/@zero-volts)
