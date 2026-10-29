@@ -1,0 +1,42 @@
+---
+import DefaultPageTitle from '@astrojs/starlight/components/PageTitle.astro';
+import { execFileSync } from 'node:child_process';
+import { statSync } from 'node:fs';
+
+const { entry, id } = Astro.locals.starlightRoute;
+let fecha = entry.data.fechaCreacion;
+
+// The tutorials without a date will use a date from the first git commit.
+if (id.startsWith('meta/') && !fecha) {
+  try {
+    const history = execFileSync('git', [
+      'log', '--follow', '--diff-filter=A', '--format=%as', '--', entry.filePath,
+    ], { cwd: process.cwd(), encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+    fecha = history.split('\n').filter(Boolean).at(-1);
+  } catch {
+    
+  }
+
+  if (!fecha) {
+    const created = statSync(entry.filePath).birthtime;
+    fecha = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Santiago', year: 'numeric', month: '2-digit', day: '2-digit',
+    }).format(created);
+  }
+}
+
+const formatted = fecha && new Intl.DateTimeFormat('es', {
+  day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+}).format(new Date(`${fecha}T00:00:00Z`));
+---
+
+<DefaultPageTitle />
+{ id.startsWith('meta/') && fecha && <p class="creation-date">Creado el <time datetime={fecha}>{formatted}</time></p> }
+
+<style>
+  .creation-date {
+    margin: 0.5rem 0 0;
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-sm);
+  }
+</style>

@@ -1,13 +1,14 @@
 ---
 title: Crear una página con Astro
 description: Tutorial paso a paso para crear una página con Astro y publicarla en Cloudflare Pages
+fechaCreacion: "2026-10-27"
 sidebar:
   order: 1
 ---
 
 En este tutorial crearás un sitio de documentación con una portada y un primer artículo. Instalarás las herramientas, crearás el proyecto, escribirás las páginas en Markdown, guardarás el código en GitHub y conectarás Cloudflare Pages para publicar cada actualización.
 
-Los ejemplos usan **mi_sitio** como nombre; puedes cambiarlo  por el tuyo(en mi caso sera zerovolts-site). Primero se publicara con una dirección gratuita `pages.dev`. El dominio personalizado es un paso opcional al final.
+Los ejemplos usan **mi_sitio** como nombre; puedes cambiarlo por el que prefieras. Primero se publicara con una dirección gratuita `pages.dev`. El dominio personalizado es un paso opcional al final.
 
 ## 1. Qué vas a utilizar
 
@@ -37,7 +38,7 @@ git commit y git push: enviar el código a GitHub
 Cloudflare Pages compila y publica la actualización
 ```
 
-`npm run build` no sube archivos a GitHub ni publica por sí solo. En este recorrido, la publicación la realiza Pages al recibir un cambio del repositorio conectado.
+`npm run build` no sube archivos a GitHub ni publica por sí solo. En este paso a paso, la publicación la realiza Pages al recibir un cambio del repositorio conectado.
 
 ## 2. Preparar las herramientas
 
@@ -45,7 +46,7 @@ Necesitas una terminal, un editor de texto —por ejemplo Visual Studio Code— 
 
 ### Instalar Node.js y npm
 
-La configuración de ejemplo se ha comprobado con Astro 7.0.9, Starlight 0.41.3 y Node 22.18.0. Esa versión de Astro requiere Node 22.12.0 o superior
+La versión instalada de Astro en este sitio requiere Node 22.23.4 o superior. Usa Node 24 para este paso a paso y comprueba los requisitos de la versión que instales; el generador puede actualizarse.
 
 Una forma de administrar Node es **nvm**, que permite instalar y seleccionar distintas versiones:
 
@@ -54,8 +55,8 @@ Una forma de administrar Node es **nvm**, que permite instalar y seleccionar dis
 3. Instala y selecciona Node:
 
 ```bash
-nvm install 22
-nvm use 22
+nvm install 24
+nvm use 24
 node --version
 npm --version
 ```
@@ -114,7 +115,7 @@ Este comando lee `package.json`, descarga Astro y las demás librerías a `node_
 Si usas nvm, crea un archivo llamado `.nvmrc`, junto a `package.json`, con este contenido:
 
 ```text
-22
+24
 ```
 
 En futuras terminales podrás seleccionar la versión del proyecto con `nvm use` desde esa carpeta. Si aún no está instalada, ejecuta antes `nvm install`.
@@ -154,7 +155,7 @@ El directorio se crea con `mkdir` en el siguiente paso. La propiedad `sidebar` d
 
 ## 5. Limpiar los ejemplos y configurar el sitio
 
-El starter trae páginas de demostración. En el editor, abre `src/content/docs/`, elimina las carpetas `guides/` y `reference/` si están presentes y los demás artículos de ejemplo. Conserva `index.mdx`, que reemplazaremos en el paso 7.
+El starter trae páginas de ejemplos. En el editor, abre `src/content/docs/`, elimina las carpetas `guides/` y `reference/` si están presentes y los demás artículos de ejemplo. Conserva `index.mdx`, que reemplazaremos en el paso 7.
 
 Ahora crea el directorio para el primer documento/articulo o tutorial:
 
@@ -243,7 +244,7 @@ npm create astro@latest mi_sitio -- --template starlight
 El sitio tendrá una portada y este primer artículo.
 ````
 
-Este archivo es el artículo que Astro publicará. **Escribe y actualiza aquí su contenido.** Puedes ampliarlo con el recorrido completo, capturas, comandos y explicaciones. 
+Este archivo es el artículo que Astro publicará. **Escribe y actualiza aquí su contenido.** Puedes ampliarlo mientras vamos armando el sitio con el paso a paso, capturas, comandos y explicaciones. 
 
 El bloque inicial entre `---` se llama **frontmatter**:
 
@@ -258,7 +259,7 @@ Después del frontmatter comienza el contenido. Usa encabezados `##` para sus se
 ### Nombre de documentos/articulos etc
 
 En este ejemplo se uso como nombre del articulo **01-construyendo-el-sitio.md**, 
-Puedes nombrar el archivo `making-site.md`, `crear-sitio.md` o cualquier otro nombre descriptivo. Es preferible usar minúsculas y guiones, sin espacios. En mi caso use un numero para poder identificar  y llevar un orden interno, No es necesario y tampoco es una convención.
+Puedes nombrar el archivo `making-site.md`, `crear-sitio.md` o cualquier otro nombre descriptivo. Es preferible usar minúsculas y guiones, sin espacios. Un prefijo numérico puede ayudar a ordenar los archivos, pero no es obligatorio.
 
 | Archivo dentro de `src/content/docs/` | Dirección por defecto |
 | --- | --- |
@@ -366,6 +367,12 @@ Abre la dirección que muestre la terminal y comprueba:
 
 Detén `preview` con `Ctrl+C` cuando termines. Todavía no has publicado en Internet: tanto `dev` como `preview` sirven el sitio desde tu equipo.
 
+### Qué ocurre entre edición y publicación
+
+El servidor de desarrollo transforma los archivos al solicitarlos y facilita revisar cambios mientras editas. `npm run build` procesa la colección de contenido y genera archivos estáticos en `dist/`; `npm run preview` sirve esa salida ya generada para inspeccionarla. Si el servidor de desarrollo muestra un cambio pero la versión previa no, vuelve a ejecutar el build: preview no convierte automáticamente las nuevas ediciones. Ninguno de esos pasos envía el sitio a Internet.
+
+Git guarda versiones del código fuente, no de los archivos generados que estén ignorados. Un *commit* registra una instantánea local de los cambios preparados; `push` transmite commits a un remoto. El proveedor de alojamiento puede observar esa rama y construir otra copia. Así se puede comprobar qué versión local se envió y qué versión desplegó el servicio.
+
 ## 10. Guardar el proyecto en GitHub
 
 ### Inicializar Git y preparar el primer commit
@@ -422,6 +429,12 @@ git branch -M main
 
 Un commit guarda una versión local. Aún falta enviarla a GitHub.
 
+### Qué hacen los comandos de Git
+
+`git status --short` resume archivos nuevos y modificados; `git add .` prepara los cambios para el siguiente commit y respeta las reglas de `.gitignore`. `git diff --cached --stat` muestra un resumen de lo preparado, no el contenido completo: para inspeccionar las líneas usa `git diff --cached`. `git commit -m` crea el commit local con el mensaje indicado y `git branch -M main` renombra la rama actual a `main`; el último comando puede sobrescribir una rama local existente con ese nombre, así que revisa las ramas primero con `git branch`.
+
+La identidad de `git config user.name` y `user.email` se escribe en los commits; no autentica contra GitHub. `gh auth login` configura la autenticación y `gh auth setup-git` integra Git con ella. No confundas esa identidad con los permisos de acceso al repositorio remoto.
+
 ### Crear y conectar el repositorio remoto
 
 En [github.com/new](https://github.com/new), crea un repositorio llamado `mi-sitio`(o el nombre de tu sitio). Puede ser público si quieres que los lectores consulten el código. Déjalo vacío: no agregues README, licencia ni `.gitignore` desde GitHub porque ya tienes un proyecto local.
@@ -467,7 +480,7 @@ En [Cloudflare Dashboard](https://dash.cloudflare.com/):
 
 La carpeta local puede llamarse `mi_sitio` y el repositorio `mi-sitio`; eso no cambia la raíz del repositorio. No escribas el nombre de la carpeta local en Root directory si `package.json` ya aparece en la raíz de GitHub.
 
-Pages puede leer `.nvmrc`. Si también defines la variable `NODE_VERSION` en el panel, usa `22` para **Production y Preview**, coherente con ese archivo y con los requisitos del proyecto. [Versiones del entorno de build](https://developers.cloudflare.com/pages/configuration/build-image/).
+Pages puede leer `.nvmrc`. Si también defines la variable `NODE_VERSION` en el panel, usa `24` para **Production y Preview**, coherente con ese archivo y con los requisitos del proyecto. [Versiones del entorno de build](https://developers.cloudflare.com/pages/configuration/build-image/).
 
 Selecciona **Save and Deploy**. Revisa el log: debe instalar dependencias, ejecutar el build y publicar `dist/`. Si te pide un comando `wrangler deploy`, comprueba que hayas elegido Pages y no el flujo de Workers.
 

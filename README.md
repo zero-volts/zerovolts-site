@@ -47,3 +47,9 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+
+## Fecha de creación de los tutoriales
+
+Los artículos de `src/content/docs/meta/` muestran su fecha de creación debajo del título. Para los artículos nuevos, el sitio obtiene automáticamente la fecha del primer commit que añadió el archivo. Antes de que exista ese commit, usa la fecha de creación del archivo local.
+
+Para conservar una fecha concreta, añade `fechaCreacion: "AAAA-MM-DD"` al frontmatter. Esta fecha tiene prioridad sobre la automática. Es especialmente útil si el entorno de publicación no dispone del historial completo de Git: en una copia superficial o sin Git, la fecha automática puede cambiar y la fecha del archivo puede reflejar la copia, no su creación original.
