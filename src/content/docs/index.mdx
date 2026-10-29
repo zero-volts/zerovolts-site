@@ -1,4 +1,3 @@
-
 ---
 title: Zero-Volts
 description: Electrónica, desarrollo y ciberseguridad.
@@ -6,13 +5,13 @@ template: splash
 
 hero:
   title: 'Explora. Construye. Experimenta.'
-  tagline: 'Zero-Volts: proyectos open source, electrónica, hardware, software y ciberseguridad.'
+  tagline: 'Documentación, electrónica, firmware y experimentos con Raspberry Pi, ESP32 y tecnologías inalámbricas.'
   image:
     alt: 'Logo de Zero-Volts'
     file: ../../assets/images/icon_zerovolts.png
   actions:
     - text: Explorar tutoriales
-      link: /#tutoriales
+      link: /meta/01-making-astro-site/
       icon: right-arrow
     - text: GitHub
       link: https://github.com/zero-volts
@@ -22,13 +21,9 @@ hero:
 
 import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-## Explora Zero-Volts
+## Explora los tutoriales
 
-Un espacio para experimentar, construir dispositivos y compartir conocimientos sobre tecnologías abiertas.
-
-## Tutoriales
-
-Documentación paso a paso basada en proyectos reales.
+Guías paso a paso para aprender, construir y experimentar.
 
 <CardGrid>
   <LinkCard
@@ -41,7 +36,11 @@ Documentación paso a paso basada en proyectos reales.
     description="Guía para conectar una pantalla de 3.5&quot; a tu Raspberry Pi, configurar el driver y calibrar la pantalla táctil en Linux."
     href="/meta/02-rpi-xpt2046/"
   />
-
+  <LinkCard
+    title="03 — Hola LVGL en Raspberry Pi"
+    description="Compila LVGL, ejecuta una demostración y crea tu primera interfaz en C sobre el framebuffer de Linux."
+    href="/meta/03-lvgl-raspberry/"
+  />
 </CardGrid>
 
 ---

@@ -1,86 +1,54 @@
-
-/* Zero-Volts theme */
-
+/* Paleta compartida por la portada y los tutoriales. */
 :root {
-  --sl-color-accent-low: #103d28;
-  --sl-color-accent: #00e889;
-  --sl-color-accent-high: #b6ffe0;
+  --sl-color-accent-low: #103c2c;
+  --sl-color-accent: #008e61;
+  --sl-color-accent-high: #5dd49e;
+  --sl-color-white: #ecf8f1;
+  --sl-color-gray-1: #dcebe2;
+  --sl-color-gray-2: #a5b9af;
+  --sl-color-gray-3: #9bbcab;
+  --sl-color-gray-4: #456052;
+  --sl-color-gray-5: #253b31;
+  --sl-color-gray-6: #14221b;
+  --sl-color-black: #090e0c;
+  --sl-color-bg: #090e0c;
+  --sl-color-bg-nav: #0b110e;
+  --sl-color-bg-sidebar: #0b110e;
+  --sl-color-bg-inline-code: #172a20;
+  --sl-color-hairline: #204c39;
 }
 
-:root[data-theme='dark'] {
-  --sl-color-bg: #0b0f10;
-  --sl-color-bg-nav: #101714;
-  --sl-color-bg-sidebar: #0b0f10;
-  --sl-color-hairline: #244334;
-}
+header.header { border-bottom: 1px solid #204c39; }
+.site-title { color: #edf8f2; font-weight: 700; }
+.sidebar-content a[aria-current='page'] { background: #123a2b; color: #b0f9d8; }
+.sl-markdown-content a:not(.sl-link-card) { text-underline-offset: 4px; }
+.sl-markdown-content code:not(pre code) { border-radius: .3rem; }
+.sl-markdown-content table { border-color: #204c39; }
+.sl-markdown-content th { background: #12241a; }
 
-/* Hero */
-
-.hero {
-  padding-block: 3rem;
-  gap: 2rem;
-}
-
-.hero h1 {
-  color: #f2fff7;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-
-.hero .tagline {
-  color: #aec3b6;
-  line-height: 1.7;
-}
-
-.hero img {
-  max-width: 380px;
-  border-radius: 16px;
-  filter: drop-shadow(0 0 28px rgba(0, 232, 137, 0.18));
-}
-
-/* Main action */
-
-.hero .primary {
-  background: #00e889;
-  color: #06120c;
-  border-radius: 8px;
+.hero { padding-block: 3.5rem; gap: 3rem; }
+.hero h1 { color: #effaf3; font-weight: 750; letter-spacing: -.035em; }
+.hero h1::before {
+  content: 'OPEN SOURCE · HARDWARE · LABS';
+  display: block;
+  margin-bottom: 1.2rem;
+  color: #00e99a;
+  font-size: .7rem;
   font-weight: 700;
+  letter-spacing: .05em;
 }
+.hero .tagline { color: #a7bab0; line-height: 1.6; }
+.hero img { width: 100%; max-width: 480px; height: auto; object-fit: contain; }
+.hero .action.primary { background: #00d995; border-color: #00d995; color: #04150d; border-radius: 8px; font-weight: 700; }
+.hero .action.primary:hover { background: #45ecb0; border-color: #45ecb0; }
+.hero .action.secondary { border-color: #3c7058; border-radius: 8px; color: #e7f4ec; }
 
-.hero .primary:hover {
-  background: #43ffab;
-}
-
-/* Documentation cards */
-
-.sl-card {
-  background: #121c18;
-  border: 1px solid #244936;
-  border-radius: 12px;
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.sl-card:hover {
-  border-color: #00e889;
-  transform: translateY(-3px);
-}
-
-.sl-card .icon {
-  color: #00e889;
-}
-
-/* Links */
-
-.sl-markdown-content a:not(.sl-link-card) {
-  text-underline-offset: 4px;
-}
+.sl-link-card, .sl-card { background: #111e17; border: 1px solid #204c39; border-radius: 12px; transition: border-color .2s, transform .2s; }
+.sl-link-card:hover, .sl-card:hover { border-color: #00d995; transform: translateY(-2px); }
+.sl-link-card .title, .sl-card .icon { color: #eaf8f0; }
+.sl-link-card .description { color: #a5b9af; }
 
 @media (max-width: 50rem) {
-  .hero {
-    padding-block: 2rem;
-  }
-
-  .hero img {
-    max-width: 260px;
-  }
+  .hero { padding-block: 2rem; gap: 2rem; }
+  .hero img { max-width: 360px; }
 }

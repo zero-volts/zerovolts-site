@@ -7,7 +7,12 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Zerovolts',
-      components: { PageTitle: './src/components/PageTitle.astro' },
+      customCss: ['./src/styles/custom.css'],
+      components: {
+        PageTitle: './src/components/PageTitle.astro',
+        ThemeProvider: './src/components/DarkTheme.astro',
+        ThemeSelect: './src/components/DarkTheme.astro',
+      },
 	  favicon: '/favicon.svg',
       locales: {
         root: { label: 'Español', lang: 'es' },
