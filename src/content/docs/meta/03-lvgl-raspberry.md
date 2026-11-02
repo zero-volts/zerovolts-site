@@ -268,8 +268,17 @@ La primera orden crea o actualiza el ejecutable; la segunda lo inicia. Tras edit
 
 Con esto ya tienes una base para crear otros objetos LVGL y entender la separación entre dibujo, pantalla y entrada. Para interacción con el touch tendrás que identificar y configurar el dispositivo de entrada correspondiente (que lo veremos en un próximo tutorial).
 
+
+<iframe
+    width="600" height="338" style="width: 100%; max-width: 600px; aspect-ratio: 16 / 9; height: auto;"
+    src="https://www.youtube.com/embed/5Pztow7iqcE"
+    title="Configuración de botones y calibración táctil con LVGL" loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+</iframe>
+
 ## Referencias
 
 - [Port oficial de LVGL para Linux](https://github.com/lvgl/lv_port_linux).
 - [Controlador Linux framebuffer de LVGL](https://docs.lvgl.io/master/details/integration/embedded_linux/drivers/fbdev.html).
-- [Ejemplo de referencia `main_hello_world.c`](https://github.com/zero-volts/zerovolts-ui/blob/main/examples/main_hello_world.c), del repositorio Zero-Volts, distribuido bajo [GPL-3.0](https://github.com/zero-volts/zerovolts-ui/blob/main/LICENSE). El código de este artículo reproduce ese ejemplo.
+- [Ejemplo de referencia `main_hello_world.c`](https://github.com/zero-volts/zerovolts-ui/blob/main/examples/main_hello_world.c), del repositorio Zero-Volts, 

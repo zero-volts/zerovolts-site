@@ -6,7 +6,7 @@ export default defineConfig({
   output: 'static',
   integrations: [
     starlight({
-      title: 'Zerovolts',
+      title: 'Zero-volts',
       customCss: ['./src/styles/custom.css'],
       components: {
         PageTitle: './src/components/PageTitle.astro',
